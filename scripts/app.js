@@ -5,6 +5,8 @@ global.$ = jQuery;
 let Bootstrap = require('bootstrap');
 import $ from 'jquery';
 import ko from 'knockout';
+const mapping = require('knockout-mapping');
+ko.mapping = mapping;
 
 import { CityViewModel } from './application';
 import { FilterModal } from './filtermodal';

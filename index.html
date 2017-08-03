@@ -95,38 +95,38 @@
             </div>
         </div>
         <div id="cities">
-            <div data-bind="foreach: filterProducts, visible: citiesCollection().length">
+            <div data-bind="foreach: filterProducts">
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                         <div class="toggle-container" role="button" data-toggle="collapse" data-parent="#accordion" 
-                        data-bind="attr: { href: '#' +id }" aria-expanded="false">
+                        data-bind="attr: { href: '#' + id() }" aria-expanded="false">
                         </div>
                         <div class="panel-heading" role="tab" id="headingOne">
                             <button class="delete-city" data-bind="click: $root.deleteCity"></button>
-                            <button class="edit-city" data-bind="attr: {'data-id': id },click: $root.openModalForEditCity"></button>
+                            <button class="edit-city" data-bind="attr: {'data-id': id() },click: $root.openModalForEditCity"></button>
                             <a data-bind="text: name">
                             </a>
-                            <div class="areas"><span data-bind="text: formAreasString(), attr:{'data-id': id}"></span></div>
-                            <div class="marks" data-bind="attr: {'data-id': id }">
-                                <button id="i-button" class="attributes" data-bind="attr: { 'data-act': isIndustrial }, style: { background: isIndustrial() === 'true' ? '#4ee321' : '#f39846' },click: $root.toggleIndustrial">I</button>
-                                <button id="c-button" class="attributes" data-bind="attr: { 'data-act': isCriminal }, style: { background: isCriminal() === 'true' ? '#4ee321' : '#f39846' },click: $root.toggleCriminal">C</button>
-                                <button id="p-button" class="attributes" data-bind="attr: { 'data-act': isPolluted } ,style: { background: isPolluted() === 'true' ? '#4ee321' : '#f39846' },click: $root.togglePolluted">P</button>
+                            <div class="areas"><span data-bind="text: formAreasString(), attr:{'data-id': id()}"></span></div>
+                            <div class="marks" data-bind="attr: {'data-id': id() }">
+                                <button id="i-button" class="attributes" data-bind="attr: { 'data-act': isIndustrial() }, style: { background: isIndustrial() === 'true' ? '#4ee321' : '#f39846' },click: $root.toggleIndustrial">I</button>
+                                <button id="c-button" class="attributes" data-bind="attr: { 'data-act': isCriminal() }, style: { background: isCriminal() === 'true' ? '#4ee321' : '#f39846' },click: $root.toggleCriminal">C</button>
+                                <button id="p-button" class="attributes" data-bind="attr: { 'data-act': isPolluted() } ,style: { background: isPolluted() === 'true' ? '#4ee321' : '#f39846' },click: $root.togglePolluted">P</button>
                             </div>
                         </div>
-                        <div data-bind="attr: { id: id }" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div data-bind="attr: { id: id() }" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
                                 <div class="newarea">
-                                    <button data-bind="click: $root.openModalForAddingArea, attr: {'data-id': id}" type="button" class="newareabutton btn btn-primary btn-sm" id="add-new-area" data-toggle="modal" data-target="#areaModal">
+                                    <button data-bind="click: $root.openModalForAddingArea, attr: {'data-id': id() }" type="button" class="newareabutton btn btn-primary btn-sm" id="add-new-area" data-toggle="modal" data-target="#areaModal">
                                         Add New Area
                                     </button>
                                 </div>
                                 <div data-bind="foreach: cityAreas">
                                     <div class="areasdown">
-                                        <button class="delete-area" data-bind="click: $root.deleteArea, attr: {'data-id': id}"></button>
-                                        <button class="edit-area" data-target="#areaModal" data-toggle="modal" data-bind="click: $root.openModalForEditArea, attr: {'data-id': id}"></button>
-                                        <span class="areadown-name" data-bind="text: name"></span>
-                                        <span class="description" data-bind="text: description"></span>
-                                        <span class="citizenamount" data-bind="text: citizenAmount"></span>
+                                        <button class="delete-area" data-bind="click: $root.deleteArea, attr: {'data-id': id() }"></button>
+                                        <button class="edit-area" data-target="#areaModal" data-toggle="modal" data-bind="click: $root.openModalForEditArea, attr: {'data-id': id() }"></button>
+                                        <span class="areadown-name" data-bind="text: name()"></span>
+                                        <span class="description" data-bind="text: description()"></span>
+                                        <span class="citizenamount" data-bind="text: citizenAmount() + ' people'"></span>
                                     </div>
                                 </div>
                             </div>

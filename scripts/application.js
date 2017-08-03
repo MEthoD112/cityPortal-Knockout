@@ -24,7 +24,10 @@ function CityViewModel() {
   this.inputCitizenAmount = $('#areacitizens');
   this.inputSearchCity = $('#input-search-cities');
   this.inputSearchCountry = $('#input-search-countries');
+  this.inputMinCitizen = $('#min-value-citizens');
+  this.inputMaxCitizen = $('#max-value-citizens');
 
+  // Rerender cities list in search datalist
   self.initCitiesSearch = function (collection) {
     this.citiesList.empty();
     collection.forEach((item) => {
@@ -42,18 +45,24 @@ function CityViewModel() {
 
   // Form the collection of cityModels
   self.citiesArray = function () {
-    const arr = [];
-    self.cities().forEach((item) => {
-      arr.push(new CityModel(item));
+    return self.cities().map((item) => {
+      return new CityModel(item);
     });
-    return arr;
   };
 
   // Make citiesCollection observable
   self.citiesCollection = ko.observableArray(self.citiesArray());
 
+  // Observable variable for filtered collection 
   self.cityFilter = ko.observable();
 
+  // Reset filter
+  self.resetFilter = function () {
+    self.cityFilter(null);
+    $('#city-error-main').remove();
+  };
+
+  // Function returns filtered collection by city, by country, by attrs, by citizens
   self.filterProducts = ko.computed(() => {
     if (!self.cityFilter()) {
       return self.citiesCollection();
@@ -66,14 +75,27 @@ function CityViewModel() {
         return city.country() == self.inputSearchCountry.val();
       });
     } else if (self.filterMode === 'attr') {
-
+      return ko.utils.arrayFilter(self.citiesCollection(), (city) => {
+        return (city.isIndustrial() == $('#i-filter').attr('data-act') &&
+          city.isCriminal() == $('#c-filter').attr('data-act') &&
+          city.isPolluted() == $('#p-filter').attr('data-act'))
+      });
     } else {
-
+      // Making a deep copy of citiesCollection
+      const cloneArr = ko.mapping.fromJS(ko.mapping.toJS(self.citiesCollection));
+      return ko.utils.arrayFilter(cloneArr(), (city) => {
+        const areas = ko.utils.arrayFilter(city.cityAreas(), (area) => {
+          return (+area.citizenAmount() >= +self.inputMinCitizen.val() && +area.citizenAmount() <= +self.inputMaxCitizen.val());
+        });
+        city.cityAreas(areas);
+        return (city.cityAreas().length > 0);
+      });
     }
   });
 
+  // Validate filter by city
   self.filterCity = function () {
-    self.filterMode = 'city'; 
+    self.filterMode = 'city';
     if (!self.inputSearchCity.val()) {
       return;
     }
@@ -87,14 +109,15 @@ function CityViewModel() {
       self.mainContainer.prepend(`<h3 class="city-error" id="city-error-main">${constants.alertNoCities}</h3>`);
       return;
     }
-    
+
     self.cityFilter(self.filterProducts());
     self.inputSearchCity.val('');
     $('#city-error-main').remove();
   };
 
+  // Validate filter by country
   self.filterCountry = function () {
-    self.filterMode = 'country'; 
+    self.filterMode = 'country';
     if (!self.inputSearchCountry.val()) {
       return;
     }
@@ -113,52 +136,56 @@ function CityViewModel() {
     $('#countries-error').html('');
     $('#dropdown-menu').removeClass('open');
   };
+
+  // Validate filter by attrs
   self.filterAttr = function () {
-    self.filterMode = 'attr'; 
+    self.filterMode = 'attr';
     const cities = JSON.parse(ko.toJSON(self.citiesCollection()));
     const bool = cities.some((item) => {
-      return item.country.toUpperCase() === self.inputSearchCountry.val().toUpperCase();
+      return (item.isIndustrial === $('#i-filter').attr('data-act') &&
+        item.isCriminal === $('#c-filter').attr('data-act') &&
+        item.isPolluted === $('#p-filter').attr('data-act'))
     });
 
     if (!bool) {
       self.inputSearchCountry.val('');
-      $('#countries-error').html(constants.alertNoCountries);
+      $('#atrributes-error').html(constants.alertNoCitiesWithAttr);
       return;
     }
     self.cityFilter(self.filterProducts());
-    self.inputSearchCountry.val('');
-    $('#countries-error').html('');
+    $('#atrributes-error').html('');
     $('#dropdown-menu').removeClass('open');
   };
 
+  // Validate filter by citizens
   self.filterCitizen = function () {
-    self.filterMode = 'country'; 
-    if (!self.inputSearchCountry.val()) {
+    self.filterMode = 'citizen';
+    if (!self.inputMinCitizen.val() || !self.inputMaxCitizen.val()) {
       return;
     }
     const cities = JSON.parse(ko.toJSON(self.citiesCollection()));
-    const bool = cities.some((item) => {
-      return item.country.toUpperCase() === self.inputSearchCountry.val().toUpperCase();
+    let bool = false;
+    cities.forEach((city) => {
+      city.cityAreas.forEach((area) => {
+        if (+area.citizenAmount >= +self.inputMinCitizen.val() && +area.citizenAmount <= +self.inputMaxCitizen.val()) {
+          bool = true;
+        }
+      });
     });
-
     if (!bool) {
       self.inputSearchCountry.val('');
-      $('#countries-error').html(constants.alertNoCountries);
+      $('#citizens-error').html(constants.alertNoAreasWithSuchCitizens);
       return;
     }
     self.cityFilter(self.filterProducts());
     self.inputSearchCountry.val('');
     $('#countries-error').html('');
     $('#dropdown-menu').removeClass('open');
-  };
+  };  
 
-  self.resetFilter = function () {
-    self.cityFilter(null);
-    $('#city-error-main').remove();
-  };
-
-  // Add city model
+  // Add or edit city model
   self.addOrEditCity = function (item, event) {
+    self.resetFilter();
     if ($(event.target).attr('data-mode') === 'add') {
       if (!this.validateCity()) {
         return;
@@ -184,21 +211,22 @@ function CityViewModel() {
     const model = {
       name: $('#addnewcity').val(),
       country: $('#addnewcountry').val(),
-      isIndustrial: $('#i').attr('data-act'),// === 'true' ? true : false,
-      isCriminal: $('#c').attr('data-act'),// === 'true' ? true : false,
-      isPolluted: $('#p').attr('data-act'),// === 'true' ? true : false,
+      isIndustrial: $('#i').attr('data-act'),
+      isCriminal: $('#c').attr('data-act'),
+      isPolluted: $('#p').attr('data-act'),
       cityAreas: []
     };
     return model;
   };
 
+  // Add or edit area model
   self.addOrEditArea = function () {
+    self.resetFilter();
     if (self.saveArea.attr('data-mode') === 'add') {
       if (!self.validateArea()) {
         return;
       }
       self.citiesCollection()[self.indexCity].addArea(self.createArea());
-      //this.errorArea.html('');
     } else {
       if (!self.validateArea('edit')) {
         return;
@@ -211,6 +239,7 @@ function CityViewModel() {
     this.areaModal.modal('hide');
   };
 
+  // Form area model
   self.createArea = function () {
     const model = {
       name: $('#areaname').val(),
@@ -220,9 +249,10 @@ function CityViewModel() {
     return model;
   };
 
+  // Find city index by id
   self.findIndex = function (id) {
     const found = ko.utils.arrayFirst(self.citiesCollection(), (child) => {
-      return child.id === id;
+      return child.id() == id;
     });
     return self.citiesCollection().indexOf(found);
   };
@@ -232,12 +262,14 @@ function CityViewModel() {
     return ko.toJSON(self.citiesCollection());
   });
 
+  // Delety city
   self.deleteCity = function (city) {
     self.citiesCollection.remove(city);
     localStorage.setItem('cities', self.output());
     self.cities();
   };
 
+  // Delete area
   self.deleteArea = function (item, event) {
     const areaId = $(event.target).attr('data-id');
     const cityId = $(event.target).parent().parent().parent().parent().attr('id');
@@ -247,13 +279,14 @@ function CityViewModel() {
     localStorage.setItem('cities', ko.toJSON(self.citiesCollection()));
   };
 
+  // Find area by city index and area id
   self.findArea = function (cityIndex, areaId) {
-    const found = ko.utils.arrayFirst(self.citiesCollection()[cityIndex].cityAreas(), (area) => {
-      return area.id === areaId;
+    return ko.utils.arrayFirst(self.citiesCollection()[cityIndex].cityAreas(), (area) => {
+      return area.id() === areaId;
     });
-    return found;
   };
 
+  // Toggle isIndustrial attr
   self.toggleIndustrial = function (item, event) {
     const id = $(event.target).parent().attr('data-id');
     const index = self.findIndex(id);
@@ -261,6 +294,7 @@ function CityViewModel() {
     localStorage.setItem('cities', self.output());
   };
 
+  // Toggle isCriminal attr
   self.toggleCriminal = function (item, event) {
     const id = $(event.target).parent().attr('data-id');
     const index = self.findIndex(id);
@@ -268,6 +302,7 @@ function CityViewModel() {
     localStorage.setItem('cities', self.output());
   };
 
+  // Toggle isPolluted attr
   self.togglePolluted = function (item, event) {
     const id = $(event.target).parent().attr('data-id');
     const index = self.findIndex(id);
@@ -275,6 +310,7 @@ function CityViewModel() {
     localStorage.setItem('cities', self.output());
   };
 
+  // Open modal for editting city
   self.openModalForEditCity = function () {
     const cityId = $(event.target).attr('data-id');
     self.index = self.findIndex(cityId);
@@ -302,6 +338,7 @@ function CityViewModel() {
     self.saveCity.attr('data-mode', 'edit');
   };
 
+  // Open modal for adding area
   self.openModalForAddingArea = function () {
     self.cityId = $(event.target).attr('data-id');
     self.indexCity = self.findIndex(self.cityId);
@@ -311,7 +348,6 @@ function CityViewModel() {
     self.inputArea.val('');
     self.inputDescription.val('');
     self.inputCitizenAmount.val('');
-
   };
 
   // Open modal window for edditing area

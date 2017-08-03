@@ -351,7 +351,7 @@ exports.f = __webpack_require__(6) ? gOPD : function getOwnPropertyDescriptor(O,
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has         = __webpack_require__(10)
   , toObject    = __webpack_require__(9)
-  , IE_PROTO    = __webpack_require__(75)('IE_PROTO')
+  , IE_PROTO    = __webpack_require__(76)('IE_PROTO')
   , ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function(O){
@@ -575,7 +575,7 @@ if(__webpack_require__(6)){
     , fails               = __webpack_require__(3)
     , $export             = __webpack_require__(0)
     , $typed              = __webpack_require__(58)
-    , $buffer             = __webpack_require__(82)
+    , $buffer             = __webpack_require__(83)
     , ctx                 = __webpack_require__(25)
     , anInstance          = __webpack_require__(31)
     , propertyDesc        = __webpack_require__(29)
@@ -590,21 +590,21 @@ if(__webpack_require__(6)){
     , classof             = __webpack_require__(45)
     , isObject            = __webpack_require__(4)
     , toObject            = __webpack_require__(9)
-    , isArrayIter         = __webpack_require__(67)
+    , isArrayIter         = __webpack_require__(68)
     , create              = __webpack_require__(33)
     , getPrototypeOf      = __webpack_require__(17)
     , gOPN                = __webpack_require__(34).f
-    , getIterFn           = __webpack_require__(84)
+    , getIterFn           = __webpack_require__(85)
     , uid                 = __webpack_require__(39)
     , wks                 = __webpack_require__(5)
     , createArrayMethod   = __webpack_require__(21)
     , createArrayIncludes = __webpack_require__(48)
-    , speciesConstructor  = __webpack_require__(76)
-    , ArrayIterators      = __webpack_require__(85)
+    , speciesConstructor  = __webpack_require__(77)
+    , ArrayIterators      = __webpack_require__(86)
     , Iterators           = __webpack_require__(42)
     , $iterDetect         = __webpack_require__(54)
     , setSpecies          = __webpack_require__(37)
-    , arrayFill           = __webpack_require__(60)
+    , arrayFill           = __webpack_require__(61)
     , arrayCopyWithin     = __webpack_require__(92)
     , $DP                 = __webpack_require__(7)
     , $GOPD               = __webpack_require__(16)
@@ -1153,21 +1153,21 @@ module.exports = false;
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject    = __webpack_require__(1)
   , dPs         = __webpack_require__(105)
-  , enumBugKeys = __webpack_require__(63)
-  , IE_PROTO    = __webpack_require__(75)('IE_PROTO')
+  , enumBugKeys = __webpack_require__(64)
+  , IE_PROTO    = __webpack_require__(76)('IE_PROTO')
   , Empty       = function(){ /* empty */ }
   , PROTOTYPE   = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function(){
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(62)('iframe')
+  var iframe = __webpack_require__(63)('iframe')
     , i      = enumBugKeys.length
     , lt     = '<'
     , gt     = '>'
     , iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(65).appendChild(iframe);
+  __webpack_require__(66).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -1199,7 +1199,7 @@ module.exports = Object.create || function create(O, Properties){
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys      = __webpack_require__(107)
-  , hiddenKeys = __webpack_require__(63).concat('length', 'prototype');
+  , hiddenKeys = __webpack_require__(64).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
   return $keys(O, hiddenKeys);
@@ -1211,7 +1211,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys       = __webpack_require__(107)
-  , enumBugKeys = __webpack_require__(63);
+  , enumBugKeys = __webpack_require__(64);
 
 module.exports = Object.keys || function keys(O){
   return $keys(O, enumBugKeys);
@@ -1286,10 +1286,10 @@ module.exports = function(key){
 
 var ctx         = __webpack_require__(25)
   , call        = __webpack_require__(101)
-  , isArrayIter = __webpack_require__(67)
+  , isArrayIter = __webpack_require__(68)
   , anObject    = __webpack_require__(1)
   , toLength    = __webpack_require__(8)
-  , getIterFn   = __webpack_require__(84)
+  , getIterFn   = __webpack_require__(85)
   , BREAK       = {}
   , RETURN      = {};
 var exports = module.exports = function(iterable, entries, fn, that, ITERATOR){
@@ -1335,7 +1335,7 @@ module.exports = function(it, tag, stat){
 var $export = __webpack_require__(0)
   , defined = __webpack_require__(19)
   , fails   = __webpack_require__(3)
-  , spaces  = __webpack_require__(80)
+  , spaces  = __webpack_require__(81)
   , space   = '[' + spaces + ']'
   , non     = '\u200b\u0085'
   , ltrim   = RegExp('^' + space + space + '*')
@@ -1450,7 +1450,7 @@ var global            = __webpack_require__(2)
   , fails             = __webpack_require__(3)
   , $iterDetect       = __webpack_require__(54)
   , setToStringTag    = __webpack_require__(43)
-  , inheritIfRequired = __webpack_require__(66);
+  , inheritIfRequired = __webpack_require__(67);
 
 module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
   var Base  = global[NAME]
@@ -7645,6 +7645,39 @@ ko.exportSymbol('nativeTemplateEngine', ko.nativeTemplateEngine);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var constants = {
+    activeColor: '#4ee321',
+    noActiveColor: '#f39846',
+    addCity: 'Add New City',
+    editCity: 'Edit City',
+    addArea: 'Add New Area',
+    editArea: 'Edit Area',
+    noAreas: 'No Areas',
+    alertMessageForCity: 'Please, insert the name of the city!!!',
+    alertMessageForCountry: 'Please, insert the name of the country',
+    alertMessageForExistingCity: 'Such city is already exist!!!',
+    alertMessageForExistingArea: 'Such area is already exist in this city!!!',
+    maxLengthForCityName: 100,
+    alertMessageForAreaFields: 'Please, insert all fields!!!',
+    alertMessageForAreaCitizens: 'Please, insert correct number of citizens!!!',
+    alertNoCities: 'No such city in database, use dropdown menu!!!',
+    alertNoCountries: 'No such country in database, use dropdown menu!!!',
+    alertNoCitiesWithAttr: 'No cities with such attributes!!!',
+    alertNoAreasWithSuchCitizens: 'No areas with such number of citizens!!!'
+};
+
+exports.constants = constants;
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 
 var toObject = __webpack_require__(9)
@@ -7662,7 +7695,7 @@ module.exports = function fill(value /*, start = 0, end = @length */){
 };
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7676,7 +7709,7 @@ module.exports = function(object, index, value){
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(4)
@@ -7688,7 +7721,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -7697,7 +7730,7 @@ module.exports = (
 ).split(',');
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var MATCH = __webpack_require__(5)('match');
@@ -7714,17 +7747,17 @@ module.exports = function(KEY){
 };
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(2).document && document.documentElement;
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject       = __webpack_require__(4)
-  , setPrototypeOf = __webpack_require__(74).set;
+  , setPrototypeOf = __webpack_require__(75).set;
 module.exports = function(that, target, C){
   var P, S = target.constructor;
   if(S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf){
@@ -7733,7 +7766,7 @@ module.exports = function(that, target, C){
 };
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
@@ -7746,7 +7779,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
@@ -7756,7 +7789,7 @@ module.exports = Array.isArray || function isArray(arg){
 };
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7775,7 +7808,7 @@ module.exports = function(Constructor, NAME, next){
 };
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7786,7 +7819,7 @@ var LIBRARY        = __webpack_require__(32)
   , hide           = __webpack_require__(12)
   , has            = __webpack_require__(10)
   , Iterators      = __webpack_require__(42)
-  , $iterCreate    = __webpack_require__(69)
+  , $iterCreate    = __webpack_require__(70)
   , setToStringTag = __webpack_require__(43)
   , getPrototypeOf = __webpack_require__(17)
   , ITERATOR       = __webpack_require__(5)('iterator')
@@ -7851,7 +7884,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 };
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 // 20.2.2.14 Math.expm1(x)
@@ -7866,7 +7899,7 @@ module.exports = (!$expm1
 } : $expm1;
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports) {
 
 // 20.2.2.28 Math.sign(x)
@@ -7875,11 +7908,11 @@ module.exports = Math.sign || function sign(x){
 };
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global    = __webpack_require__(2)
-  , macrotask = __webpack_require__(81).set
+  , macrotask = __webpack_require__(82).set
   , Observer  = global.MutationObserver || global.WebKitMutationObserver
   , process   = global.process
   , Promise   = global.Promise
@@ -7948,7 +7981,7 @@ module.exports = function(){
 };
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -7978,7 +8011,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(57)('keys')
@@ -7988,7 +8021,7 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
@@ -8001,7 +8034,7 @@ module.exports = function(O, D){
 };
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(30)
@@ -8023,7 +8056,7 @@ module.exports = function(TO_STRING){
 };
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // helper for String#{startsWith, endsWith, includes}
@@ -8036,7 +8069,7 @@ module.exports = function(that, searchString, NAME){
 };
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8054,20 +8087,20 @@ module.exports = function repeat(count){
 };
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ctx                = __webpack_require__(25)
   , invoke             = __webpack_require__(52)
-  , html               = __webpack_require__(65)
-  , cel                = __webpack_require__(62)
+  , html               = __webpack_require__(66)
+  , cel                = __webpack_require__(63)
   , global             = __webpack_require__(2)
   , process            = global.process
   , setTask            = global.setImmediate
@@ -8141,7 +8174,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8158,7 +8191,7 @@ var global         = __webpack_require__(2)
   , toLength       = __webpack_require__(8)
   , gOPN           = __webpack_require__(34).f
   , dP             = __webpack_require__(7).f
-  , arrayFill      = __webpack_require__(60)
+  , arrayFill      = __webpack_require__(61)
   , setToStringTag = __webpack_require__(43)
   , ARRAY_BUFFER   = 'ArrayBuffer'
   , DATA_VIEW      = 'DataView'
@@ -8420,7 +8453,7 @@ exports[ARRAY_BUFFER] = $ArrayBuffer;
 exports[DATA_VIEW] = $DataView;
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global         = __webpack_require__(2)
@@ -8434,7 +8467,7 @@ module.exports = function(name){
 };
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof   = __webpack_require__(45)
@@ -8447,7 +8480,7 @@ module.exports = __webpack_require__(24).getIteratorMethod = function(it){
 };
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8461,7 +8494,7 @@ var addToUnscopables = __webpack_require__(40)
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(70)(Array, 'Array', function(iterated, kind){
+module.exports = __webpack_require__(71)(Array, 'Array', function(iterated, kind){
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -8487,7 +8520,7 @@ addToUnscopables('values');
 addToUnscopables('entries');
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -18747,7 +18780,7 @@ return jQuery;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 var g;
@@ -18774,7 +18807,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18785,7 +18818,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.cityView = undefined;
 
-var _jquery = __webpack_require__(86);
+var _jquery = __webpack_require__(87);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -18804,6 +18837,8 @@ global.jquery = _jquery2.default;
 global.$ = _jquery2.default;
 var Bootstrap = __webpack_require__(124);
 
+var mapping = __webpack_require__(322);
+_knockout2.default.mapping = mapping;
 
 var cityView = new _application.CityViewModel();
 var filterModal = new _filtermodal.FilterModal();
@@ -18811,10 +18846,10 @@ var filterModal = new _filtermodal.FilterModal();
 _knockout2.default.applyBindings(cityView);
 
 exports.cityView = cityView;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(88)))
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18834,46 +18869,13 @@ var _knockout2 = _interopRequireDefault(_knockout);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function AreaModel(model) {
-    this.id = _underscore._.uniqueId();
+    this.id = _knockout2.default.observable(_underscore._.uniqueId());
     this.name = _knockout2.default.observable(model.name);
     this.description = _knockout2.default.observable(model.description);
     this.citizenAmount = _knockout2.default.observable(model.citizenAmount);
 }
 
 exports.AreaModel = AreaModel;
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var constants = {
-    activeColor: '#4ee321',
-    noActiveColor: '#f39846',
-    addCity: 'Add New City',
-    editCity: 'Edit City',
-    addArea: 'Add New Area',
-    editArea: 'Edit Area',
-    noAreas: 'No Areas',
-    alertMessageForCity: 'Please, insert the name of the city!!!',
-    alertMessageForCountry: 'Please, insert the name of the country',
-    alertMessageForExistingCity: 'Such city is already exist!!!',
-    alertMessageForExistingArea: 'Such area is already exist in this city!!!',
-    maxLengthForCityName: 100,
-    alertMessageForAreaFields: 'Please, insert all fields!!!',
-    alertMessageForAreaCitizens: 'Please, insert correct number of citizens!!!',
-    alertNoCities: 'No such city in database, use dropdown menu!!!',
-    alertNoCountries: 'No such country in database, use dropdown menu!!!',
-    alertNoCitiesWithAttr: 'No cities with such attributes!!!',
-    alertNoAreasWithSuchCitizens: 'No areas with such number of citizens!!!'
-};
-
-exports.constants = constants;
 
 /***/ }),
 /* 91 */
@@ -19006,7 +19008,7 @@ var dP          = __webpack_require__(7).f
   , anInstance  = __webpack_require__(31)
   , defined     = __webpack_require__(19)
   , forOf       = __webpack_require__(41)
-  , $iterDefine = __webpack_require__(70)
+  , $iterDefine = __webpack_require__(71)
   , step        = __webpack_require__(102)
   , setSpecies  = __webpack_require__(37)
   , DESCRIPTORS = __webpack_require__(6)
@@ -19249,7 +19251,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(6) && !__webpack_require__(3)(function(){
-  return Object.defineProperty(__webpack_require__(62)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+  return Object.defineProperty(__webpack_require__(63)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
 /***/ }),
@@ -19386,7 +19388,7 @@ module.exports.f = function getOwnPropertyNames(it){
 var has          = __webpack_require__(10)
   , toIObject    = __webpack_require__(15)
   , arrayIndexOf = __webpack_require__(48)(false)
-  , IE_PROTO     = __webpack_require__(75)('IE_PROTO');
+  , IE_PROTO     = __webpack_require__(76)('IE_PROTO');
 
 module.exports = function(object, names){
   var O      = toIObject(object)
@@ -19444,7 +19446,7 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it){
 var $parseFloat = __webpack_require__(2).parseFloat
   , $trim       = __webpack_require__(44).trim;
 
-module.exports = 1 / $parseFloat(__webpack_require__(80) + '-0') !== -Infinity ? function parseFloat(str){
+module.exports = 1 / $parseFloat(__webpack_require__(81) + '-0') !== -Infinity ? function parseFloat(str){
   var string = $trim(String(str), 3)
     , result = $parseFloat(string);
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
@@ -19456,7 +19458,7 @@ module.exports = 1 / $parseFloat(__webpack_require__(80) + '-0') !== -Infinity ?
 
 var $parseInt = __webpack_require__(2).parseInt
   , $trim     = __webpack_require__(44).trim
-  , ws        = __webpack_require__(80)
+  , ws        = __webpack_require__(81)
   , hex       = /^[\-+]?0[xX]/;
 
 module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix){
@@ -19479,7 +19481,7 @@ module.exports = Object.is || function is(x, y){
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var toLength = __webpack_require__(8)
-  , repeat   = __webpack_require__(79)
+  , repeat   = __webpack_require__(80)
   , defined  = __webpack_require__(19);
 
 module.exports = function(that, maxLength, fillString, left){
@@ -21202,7 +21204,7 @@ define(String.prototype, "padRight", "".padEnd);
 "pop,reverse,shift,keys,values,entries,indexOf,every,some,forEach,map,filter,find,findIndex,includes,join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill".split(",").forEach(function (key) {
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(88)))
 
 /***/ }),
 /* 121 */
@@ -21216,7 +21218,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CityViewModel = undefined;
 
-var _jquery = __webpack_require__(86);
+var _jquery = __webpack_require__(87);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -21226,9 +21228,9 @@ var _knockout2 = _interopRequireDefault(_knockout);
 
 var _citymodel = __webpack_require__(122);
 
-var _areamodel = __webpack_require__(89);
+var _areamodel = __webpack_require__(90);
 
-var _constants = __webpack_require__(90);
+var _constants = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21251,7 +21253,10 @@ function CityViewModel() {
   this.inputCitizenAmount = (0, _jquery2.default)('#areacitizens');
   this.inputSearchCity = (0, _jquery2.default)('#input-search-cities');
   this.inputSearchCountry = (0, _jquery2.default)('#input-search-countries');
+  this.inputMinCitizen = (0, _jquery2.default)('#min-value-citizens');
+  this.inputMaxCitizen = (0, _jquery2.default)('#max-value-citizens');
 
+  // Rerender cities list in search datalist
   self.initCitiesSearch = function (collection) {
     var _this = this;
 
@@ -21271,18 +21276,24 @@ function CityViewModel() {
 
   // Form the collection of cityModels
   self.citiesArray = function () {
-    var arr = [];
-    self.cities().forEach(function (item) {
-      arr.push(new _citymodel.CityModel(item));
+    return self.cities().map(function (item) {
+      return new _citymodel.CityModel(item);
     });
-    return arr;
   };
 
   // Make citiesCollection observable
   self.citiesCollection = _knockout2.default.observableArray(self.citiesArray());
 
+  // Observable variable for filtered collection 
   self.cityFilter = _knockout2.default.observable();
 
+  // Reset filter
+  self.resetFilter = function () {
+    self.cityFilter(null);
+    (0, _jquery2.default)('#city-error-main').remove();
+  };
+
+  // Function returns filtered collection by city, by country, by attrs, by citizens
   self.filterProducts = _knockout2.default.computed(function () {
     if (!self.cityFilter()) {
       return self.citiesCollection();
@@ -21294,9 +21305,24 @@ function CityViewModel() {
       return _knockout2.default.utils.arrayFilter(self.citiesCollection(), function (city) {
         return city.country() == self.inputSearchCountry.val();
       });
-    } else if (self.filterMode === 'attr') {} else {}
+    } else if (self.filterMode === 'attr') {
+      return _knockout2.default.utils.arrayFilter(self.citiesCollection(), function (city) {
+        return city.isIndustrial() == (0, _jquery2.default)('#i-filter').attr('data-act') && city.isCriminal() == (0, _jquery2.default)('#c-filter').attr('data-act') && city.isPolluted() == (0, _jquery2.default)('#p-filter').attr('data-act');
+      });
+    } else {
+      // Making a deep copy of citiesCollection
+      var cloneArr = _knockout2.default.mapping.fromJS(_knockout2.default.mapping.toJS(self.citiesCollection));
+      return _knockout2.default.utils.arrayFilter(cloneArr(), function (city) {
+        var areas = _knockout2.default.utils.arrayFilter(city.cityAreas(), function (area) {
+          return +area.citizenAmount() >= +self.inputMinCitizen.val() && +area.citizenAmount() <= +self.inputMaxCitizen.val();
+        });
+        city.cityAreas(areas);
+        return city.cityAreas().length > 0;
+      });
+    }
   });
 
+  // Validate filter by city
   self.filterCity = function () {
     self.filterMode = 'city';
     if (!self.inputSearchCity.val()) {
@@ -21318,6 +21344,7 @@ function CityViewModel() {
     (0, _jquery2.default)('#city-error-main').remove();
   };
 
+  // Validate filter by country
   self.filterCountry = function () {
     self.filterMode = 'country';
     if (!self.inputSearchCountry.val()) {
@@ -21338,37 +21365,43 @@ function CityViewModel() {
     (0, _jquery2.default)('#countries-error').html('');
     (0, _jquery2.default)('#dropdown-menu').removeClass('open');
   };
+
+  // Validate filter by attrs
   self.filterAttr = function () {
     self.filterMode = 'attr';
     var cities = JSON.parse(_knockout2.default.toJSON(self.citiesCollection()));
     var bool = cities.some(function (item) {
-      return item.country.toUpperCase() === self.inputSearchCountry.val().toUpperCase();
+      return item.isIndustrial === (0, _jquery2.default)('#i-filter').attr('data-act') && item.isCriminal === (0, _jquery2.default)('#c-filter').attr('data-act') && item.isPolluted === (0, _jquery2.default)('#p-filter').attr('data-act');
     });
 
     if (!bool) {
       self.inputSearchCountry.val('');
-      (0, _jquery2.default)('#countries-error').html(_constants.constants.alertNoCountries);
+      (0, _jquery2.default)('#atrributes-error').html(_constants.constants.alertNoCitiesWithAttr);
       return;
     }
     self.cityFilter(self.filterProducts());
-    self.inputSearchCountry.val('');
-    (0, _jquery2.default)('#countries-error').html('');
+    (0, _jquery2.default)('#atrributes-error').html('');
     (0, _jquery2.default)('#dropdown-menu').removeClass('open');
   };
 
+  // Validate filter by citizens
   self.filterCitizen = function () {
-    self.filterMode = 'country';
-    if (!self.inputSearchCountry.val()) {
+    self.filterMode = 'citizen';
+    if (!self.inputMinCitizen.val() || !self.inputMaxCitizen.val()) {
       return;
     }
     var cities = JSON.parse(_knockout2.default.toJSON(self.citiesCollection()));
-    var bool = cities.some(function (item) {
-      return item.country.toUpperCase() === self.inputSearchCountry.val().toUpperCase();
+    var bool = false;
+    cities.forEach(function (city) {
+      city.cityAreas.forEach(function (area) {
+        if (+area.citizenAmount >= +self.inputMinCitizen.val() && +area.citizenAmount <= +self.inputMaxCitizen.val()) {
+          bool = true;
+        }
+      });
     });
-
     if (!bool) {
       self.inputSearchCountry.val('');
-      (0, _jquery2.default)('#countries-error').html(_constants.constants.alertNoCountries);
+      (0, _jquery2.default)('#citizens-error').html(_constants.constants.alertNoAreasWithSuchCitizens);
       return;
     }
     self.cityFilter(self.filterProducts());
@@ -21377,13 +21410,9 @@ function CityViewModel() {
     (0, _jquery2.default)('#dropdown-menu').removeClass('open');
   };
 
-  self.resetFilter = function () {
-    self.cityFilter(null);
-    (0, _jquery2.default)('#city-error-main').remove();
-  };
-
-  // Add city model
+  // Add or edit city model
   self.addOrEditCity = function (item, event) {
+    self.resetFilter();
     if ((0, _jquery2.default)(event.target).attr('data-mode') === 'add') {
       if (!this.validateCity()) {
         return;
@@ -21409,21 +21438,22 @@ function CityViewModel() {
     var model = {
       name: (0, _jquery2.default)('#addnewcity').val(),
       country: (0, _jquery2.default)('#addnewcountry').val(),
-      isIndustrial: (0, _jquery2.default)('#i').attr('data-act'), // === 'true' ? true : false,
-      isCriminal: (0, _jquery2.default)('#c').attr('data-act'), // === 'true' ? true : false,
-      isPolluted: (0, _jquery2.default)('#p').attr('data-act'), // === 'true' ? true : false,
+      isIndustrial: (0, _jquery2.default)('#i').attr('data-act'),
+      isCriminal: (0, _jquery2.default)('#c').attr('data-act'),
+      isPolluted: (0, _jquery2.default)('#p').attr('data-act'),
       cityAreas: []
     };
     return model;
   };
 
+  // Add or edit area model
   self.addOrEditArea = function () {
+    self.resetFilter();
     if (self.saveArea.attr('data-mode') === 'add') {
       if (!self.validateArea()) {
         return;
       }
       self.citiesCollection()[self.indexCity].addArea(self.createArea());
-      //this.errorArea.html('');
     } else {
       if (!self.validateArea('edit')) {
         return;
@@ -21436,6 +21466,7 @@ function CityViewModel() {
     this.areaModal.modal('hide');
   };
 
+  // Form area model
   self.createArea = function () {
     var model = {
       name: (0, _jquery2.default)('#areaname').val(),
@@ -21445,9 +21476,10 @@ function CityViewModel() {
     return model;
   };
 
+  // Find city index by id
   self.findIndex = function (id) {
     var found = _knockout2.default.utils.arrayFirst(self.citiesCollection(), function (child) {
-      return child.id === id;
+      return child.id() == id;
     });
     return self.citiesCollection().indexOf(found);
   };
@@ -21457,12 +21489,14 @@ function CityViewModel() {
     return _knockout2.default.toJSON(self.citiesCollection());
   });
 
+  // Delety city
   self.deleteCity = function (city) {
     self.citiesCollection.remove(city);
     localStorage.setItem('cities', self.output());
     self.cities();
   };
 
+  // Delete area
   self.deleteArea = function (item, event) {
     var areaId = (0, _jquery2.default)(event.target).attr('data-id');
     var cityId = (0, _jquery2.default)(event.target).parent().parent().parent().parent().attr('id');
@@ -21472,13 +21506,14 @@ function CityViewModel() {
     localStorage.setItem('cities', _knockout2.default.toJSON(self.citiesCollection()));
   };
 
+  // Find area by city index and area id
   self.findArea = function (cityIndex, areaId) {
-    var found = _knockout2.default.utils.arrayFirst(self.citiesCollection()[cityIndex].cityAreas(), function (area) {
-      return area.id === areaId;
+    return _knockout2.default.utils.arrayFirst(self.citiesCollection()[cityIndex].cityAreas(), function (area) {
+      return area.id() === areaId;
     });
-    return found;
   };
 
+  // Toggle isIndustrial attr
   self.toggleIndustrial = function (item, event) {
     var id = (0, _jquery2.default)(event.target).parent().attr('data-id');
     var index = self.findIndex(id);
@@ -21486,6 +21521,7 @@ function CityViewModel() {
     localStorage.setItem('cities', self.output());
   };
 
+  // Toggle isCriminal attr
   self.toggleCriminal = function (item, event) {
     var id = (0, _jquery2.default)(event.target).parent().attr('data-id');
     var index = self.findIndex(id);
@@ -21493,6 +21529,7 @@ function CityViewModel() {
     localStorage.setItem('cities', self.output());
   };
 
+  // Toggle isPolluted attr
   self.togglePolluted = function (item, event) {
     var id = (0, _jquery2.default)(event.target).parent().attr('data-id');
     var index = self.findIndex(id);
@@ -21500,6 +21537,7 @@ function CityViewModel() {
     localStorage.setItem('cities', self.output());
   };
 
+  // Open modal for editting city
   self.openModalForEditCity = function () {
     var cityId = (0, _jquery2.default)(event.target).attr('data-id');
     self.index = self.findIndex(cityId);
@@ -21527,6 +21565,7 @@ function CityViewModel() {
     self.saveCity.attr('data-mode', 'edit');
   };
 
+  // Open modal for adding area
   self.openModalForAddingArea = function () {
     self.cityId = (0, _jquery2.default)(event.target).attr('data-id');
     self.indexCity = self.findIndex(self.cityId);
@@ -21631,58 +21670,65 @@ var _knockout = __webpack_require__(59);
 
 var _knockout2 = _interopRequireDefault(_knockout);
 
-var _areamodel = __webpack_require__(89);
+var _areamodel = __webpack_require__(90);
 
-var _constants = __webpack_require__(90);
+var _constants = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CityModel(model) {
     var self = this;
-    this.id = _underscore._.uniqueId();
+    this.id = _knockout2.default.observable(_underscore._.uniqueId());
     this.name = _knockout2.default.observable(model.name);
     this.country = _knockout2.default.observable(model.country);
     this.isIndustrial = _knockout2.default.observable(model.isIndustrial);
     this.isCriminal = _knockout2.default.observable(model.isCriminal);
     this.isPolluted = _knockout2.default.observable(model.isPolluted);
 
+    // Form areamodel for citymodel
     self.formAreaModels = function () {
-        var arr = [];
-        model.cityAreas.forEach(function (item) {
-            arr.push(new _areamodel.AreaModel(item));
+        return model.cityAreas.map(function (item) {
+            return new _areamodel.AreaModel(item);
         });
-        return arr;
     };
 
+    // Observable attribute of citymodel
     this.cityAreas = _knockout2.default.observableArray(self.formAreaModels());
 
+    // Add area to citymodel
     self.addArea = function (area) {
         self.cityAreas.push(new _areamodel.AreaModel(area));
-    }.bind(this);
+    }.bind(this);;
 
+    // Edit area of citymodel
     self.editArea = function (area) {
         self.cityAreas.push(new _areamodel.AreaModel(area));
-    }.bind(this);
+    }.bind(this);;
 
+    // Delete area from citymodel
     self.deleteArea = function (area) {
         self.cityAreas.remove(area);
-    }.bind(this);
+    }.bind(this);;
 
+    // Toggle attribute isIndustrial
     self.toggleIndustrial = function () {
         var bool = self.isIndustrial() === 'true' ? 'false' : 'true';
         self.isIndustrial(bool);
     }.bind(this);
 
+    // Toggle attribute isCriminal
     self.toggleCriminal = function () {
         var bool = self.isCriminal() === 'true' ? 'false' : 'true';
         self.isCriminal(bool);
     }.bind(this);
 
+    // Toggle attribute isPolluted
     self.togglePolluted = function () {
         var bool = self.isPolluted() === 'true' ? 'false' : 'true';
         self.isPolluted(bool);
     }.bind(this);
 
+    // Form string of area names
     self.formAreasString = _knockout2.default.computed(function () {
         var arr = [];
         var areas = JSON.parse(_knockout2.default.toJSON(self.cityAreas()));
@@ -21709,13 +21755,13 @@ exports.FilterModal = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(86);
+var _jquery = __webpack_require__(87);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _constants = __webpack_require__(90);
+var _constants = __webpack_require__(60);
 
-var _app = __webpack_require__(88);
+var _app = __webpack_require__(89);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21791,8 +21837,8 @@ var FilterModal = exports.FilterModal = function () {
             _this.isCriminalAttr.css('background', _constants.constants.noActiveColor);
             _this.isPollutedAttr.css('background', _constants.constants.noActiveColor);
             var arrOfMinAndMax = _this.findMinAndMaxValuesOfCitizens(JSON.parse(localStorage.getItem('cities')));
-            _this.inputMaxCitizens.val(arrOfMinAndMax[1]);
-            _this.inputMinCitizens.val(arrOfMinAndMax[0]);
+            _this.inputMaxCitizens.val(arrOfMinAndMax[1] || _constants.constants.noAreas);
+            _this.inputMinCitizens.val(arrOfMinAndMax[0] || _constants.constants.noAreas);
             _this.initCountriesList(JSON.parse(localStorage.getItem('cities')));
         });
     }
@@ -24303,7 +24349,7 @@ module.exports = __webpack_require__(24).RegExp.escape;
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(4)
-  , isArray  = __webpack_require__(68)
+  , isArray  = __webpack_require__(69)
   , SPECIES  = __webpack_require__(5)('species');
 
 module.exports = function(original){
@@ -24473,7 +24519,7 @@ $export($export.P + $export.F * !__webpack_require__(20)([].every, true), 'Array
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Array', {fill: __webpack_require__(60)});
+$export($export.P, 'Array', {fill: __webpack_require__(61)});
 
 __webpack_require__(40)('fill');
 
@@ -24560,10 +24606,10 @@ var ctx            = __webpack_require__(25)
   , $export        = __webpack_require__(0)
   , toObject       = __webpack_require__(9)
   , call           = __webpack_require__(101)
-  , isArrayIter    = __webpack_require__(67)
+  , isArrayIter    = __webpack_require__(68)
   , toLength       = __webpack_require__(8)
-  , createProperty = __webpack_require__(61)
-  , getIterFn      = __webpack_require__(84);
+  , createProperty = __webpack_require__(62)
+  , getIterFn      = __webpack_require__(85);
 
 $export($export.S + $export.F * !__webpack_require__(54)(function(iter){ Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
@@ -24622,7 +24668,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(20)($nati
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Array', {isArray: __webpack_require__(68)});
+$export($export.S, 'Array', {isArray: __webpack_require__(69)});
 
 /***/ }),
 /* 157 */
@@ -24693,7 +24739,7 @@ $export($export.P + $export.F * !__webpack_require__(20)([].map, true), 'Array',
 "use strict";
 
 var $export        = __webpack_require__(0)
-  , createProperty = __webpack_require__(61);
+  , createProperty = __webpack_require__(62);
 
 // WebKit Array.of isn't generic
 $export($export.S + $export.F * __webpack_require__(3)(function(){
@@ -24750,7 +24796,7 @@ $export($export.P + $export.F * !__webpack_require__(20)([].reduce, true), 'Arra
 "use strict";
 
 var $export    = __webpack_require__(0)
-  , html       = __webpack_require__(65)
+  , html       = __webpack_require__(66)
   , cof        = __webpack_require__(18)
   , toIndex    = __webpack_require__(38)
   , toLength   = __webpack_require__(8)
@@ -25033,7 +25079,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 
 // 20.2.2.9 Math.cbrt(x)
 var $export = __webpack_require__(0)
-  , sign    = __webpack_require__(72);
+  , sign    = __webpack_require__(73);
 
 $export($export.S, 'Math', {
   cbrt: function cbrt(x){
@@ -25074,7 +25120,7 @@ $export($export.S, 'Math', {
 
 // 20.2.2.14 Math.expm1(x)
 var $export = __webpack_require__(0)
-  , $expm1  = __webpack_require__(71);
+  , $expm1  = __webpack_require__(72);
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1});
 
@@ -25084,7 +25130,7 @@ $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1})
 
 // 20.2.2.16 Math.fround(x)
 var $export   = __webpack_require__(0)
-  , sign      = __webpack_require__(72)
+  , sign      = __webpack_require__(73)
   , pow       = Math.pow
   , EPSILON   = pow(2, -52)
   , EPSILON32 = pow(2, -23)
@@ -25203,7 +25249,7 @@ $export($export.S, 'Math', {
 // 20.2.2.28 Math.sign(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', {sign: __webpack_require__(72)});
+$export($export.S, 'Math', {sign: __webpack_require__(73)});
 
 /***/ }),
 /* 189 */
@@ -25211,7 +25257,7 @@ $export($export.S, 'Math', {sign: __webpack_require__(72)});
 
 // 20.2.2.30 Math.sinh(x)
 var $export = __webpack_require__(0)
-  , expm1   = __webpack_require__(71)
+  , expm1   = __webpack_require__(72)
   , exp     = Math.exp;
 
 // V8 near Chromium 38 has a problem with very small numbers
@@ -25231,7 +25277,7 @@ $export($export.S + $export.F * __webpack_require__(3)(function(){
 
 // 20.2.2.33 Math.tanh(x)
 var $export = __webpack_require__(0)
-  , expm1   = __webpack_require__(71)
+  , expm1   = __webpack_require__(72)
   , exp     = Math.exp;
 
 $export($export.S, 'Math', {
@@ -25264,7 +25310,7 @@ $export($export.S, 'Math', {
 var global            = __webpack_require__(2)
   , has               = __webpack_require__(10)
   , cof               = __webpack_require__(18)
-  , inheritIfRequired = __webpack_require__(66)
+  , inheritIfRequired = __webpack_require__(67)
   , toPrimitive       = __webpack_require__(23)
   , fails             = __webpack_require__(3)
   , gOPN              = __webpack_require__(34).f
@@ -25435,7 +25481,7 @@ $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parse
 var $export      = __webpack_require__(0)
   , toInteger    = __webpack_require__(30)
   , aNumberValue = __webpack_require__(91)
-  , repeat       = __webpack_require__(79)
+  , repeat       = __webpack_require__(80)
   , $toFixed     = 1..toFixed
   , floor        = Math.floor
   , data         = [0, 0, 0, 0, 0, 0]
@@ -25748,7 +25794,7 @@ __webpack_require__(22)('seal', function($seal){
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = __webpack_require__(0);
-$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(74).set});
+$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(75).set});
 
 /***/ }),
 /* 220 */
@@ -25799,9 +25845,9 @@ var LIBRARY            = __webpack_require__(32)
   , aFunction          = __webpack_require__(11)
   , anInstance         = __webpack_require__(31)
   , forOf              = __webpack_require__(41)
-  , speciesConstructor = __webpack_require__(76)
-  , task               = __webpack_require__(81).set
-  , microtask          = __webpack_require__(73)()
+  , speciesConstructor = __webpack_require__(77)
+  , task               = __webpack_require__(82).set
+  , microtask          = __webpack_require__(74)()
   , PROMISE            = 'Promise'
   , TypeError          = global.TypeError
   , process            = global.process
@@ -26221,7 +26267,7 @@ var Enumerate = function(iterated){
     , key;
   for(key in iterated)keys.push(key);
 };
-__webpack_require__(69)(Enumerate, 'Object', function(){
+__webpack_require__(70)(Enumerate, 'Object', function(){
   var that = this
     , keys = that._k
     , key;
@@ -26358,7 +26404,7 @@ $export($export.S, 'Reflect', {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
 var $export  = __webpack_require__(0)
-  , setProto = __webpack_require__(74);
+  , setProto = __webpack_require__(75);
 
 if(setProto)$export($export.S, 'Reflect', {
   setPrototypeOf: function setPrototypeOf(target, proto){
@@ -26413,7 +26459,7 @@ $export($export.S, 'Reflect', {set: set});
 /***/ (function(module, exports, __webpack_require__) {
 
 var global            = __webpack_require__(2)
-  , inheritIfRequired = __webpack_require__(66)
+  , inheritIfRequired = __webpack_require__(67)
   , dP                = __webpack_require__(7).f
   , gOPN              = __webpack_require__(34).f
   , isRegExp          = __webpack_require__(53)
@@ -26668,7 +26714,7 @@ __webpack_require__(14)('bold', function(createHTML){
 "use strict";
 
 var $export = __webpack_require__(0)
-  , $at     = __webpack_require__(77)(false);
+  , $at     = __webpack_require__(78)(false);
 $export($export.P, 'String', {
   // 21.1.3.3 String.prototype.codePointAt(pos)
   codePointAt: function codePointAt(pos){
@@ -26685,11 +26731,11 @@ $export($export.P, 'String', {
 
 var $export   = __webpack_require__(0)
   , toLength  = __webpack_require__(8)
-  , context   = __webpack_require__(78)
+  , context   = __webpack_require__(79)
   , ENDS_WITH = 'endsWith'
   , $endsWith = ''[ENDS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(64)(ENDS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(65)(ENDS_WITH), 'String', {
   endsWith: function endsWith(searchString /*, endPosition = @length */){
     var that = context(this, searchString, ENDS_WITH)
       , endPosition = arguments.length > 1 ? arguments[1] : undefined
@@ -26777,10 +26823,10 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 // 21.1.3.7 String.prototype.includes(searchString, position = 0)
 
 var $export  = __webpack_require__(0)
-  , context  = __webpack_require__(78)
+  , context  = __webpack_require__(79)
   , INCLUDES = 'includes';
 
-$export($export.P + $export.F * __webpack_require__(64)(INCLUDES), 'String', {
+$export($export.P + $export.F * __webpack_require__(65)(INCLUDES), 'String', {
   includes: function includes(searchString /*, position = 0 */){
     return !!~context(this, searchString, INCLUDES)
       .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
@@ -26806,10 +26852,10 @@ __webpack_require__(14)('italics', function(createHTML){
 
 "use strict";
 
-var $at  = __webpack_require__(77)(true);
+var $at  = __webpack_require__(78)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(70)(String, 'String', function(iterated){
+__webpack_require__(71)(String, 'String', function(iterated){
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -26867,7 +26913,7 @@ var $export = __webpack_require__(0);
 
 $export($export.P, 'String', {
   // 21.1.3.13 String.prototype.repeat(count)
-  repeat: __webpack_require__(79)
+  repeat: __webpack_require__(80)
 });
 
 /***/ }),
@@ -26892,11 +26938,11 @@ __webpack_require__(14)('small', function(createHTML){
 
 var $export     = __webpack_require__(0)
   , toLength    = __webpack_require__(8)
-  , context     = __webpack_require__(78)
+  , context     = __webpack_require__(79)
   , STARTS_WITH = 'startsWith'
   , $startsWith = ''[STARTS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(64)(STARTS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(65)(STARTS_WITH), 'String', {
   startsWith: function startsWith(searchString /*, position = 0 */){
     var that   = context(this, searchString, STARTS_WITH)
       , index  = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length))
@@ -26978,10 +27024,10 @@ var global         = __webpack_require__(2)
   , uid            = __webpack_require__(39)
   , wks            = __webpack_require__(5)
   , wksExt         = __webpack_require__(114)
-  , wksDefine      = __webpack_require__(83)
+  , wksDefine      = __webpack_require__(84)
   , keyOf          = __webpack_require__(142)
   , enumKeys       = __webpack_require__(141)
-  , isArray        = __webpack_require__(68)
+  , isArray        = __webpack_require__(69)
   , anObject       = __webpack_require__(1)
   , toIObject      = __webpack_require__(15)
   , toPrimitive    = __webpack_require__(23)
@@ -27208,13 +27254,13 @@ setToStringTag(global.JSON, 'JSON', true);
 
 var $export      = __webpack_require__(0)
   , $typed       = __webpack_require__(58)
-  , buffer       = __webpack_require__(82)
+  , buffer       = __webpack_require__(83)
   , anObject     = __webpack_require__(1)
   , toIndex      = __webpack_require__(38)
   , toLength     = __webpack_require__(8)
   , isObject     = __webpack_require__(4)
   , ArrayBuffer  = __webpack_require__(2).ArrayBuffer
-  , speciesConstructor = __webpack_require__(76)
+  , speciesConstructor = __webpack_require__(77)
   , $ArrayBuffer = buffer.ArrayBuffer
   , $DataView    = buffer.DataView
   , $isView      = $typed.ABV && ArrayBuffer.isView
@@ -27258,7 +27304,7 @@ __webpack_require__(37)(ARRAY_BUFFER);
 
 var $export = __webpack_require__(0);
 $export($export.G + $export.W + $export.F * !__webpack_require__(58).ABV, {
-  DataView: __webpack_require__(82).DataView
+  DataView: __webpack_require__(83).DataView
 });
 
 /***/ }),
@@ -27393,7 +27439,7 @@ __webpack_require__(40)('includes');
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 var $export   = __webpack_require__(0)
-  , microtask = __webpack_require__(73)()
+  , microtask = __webpack_require__(74)()
   , process   = __webpack_require__(2).process
   , isNode    = __webpack_require__(18)(process) == 'process';
 
@@ -27560,7 +27606,7 @@ var $export        = __webpack_require__(0)
   , ownKeys        = __webpack_require__(109)
   , toIObject      = __webpack_require__(15)
   , gOPD           = __webpack_require__(16)
-  , createProperty = __webpack_require__(61);
+  , createProperty = __webpack_require__(62);
 
 $export($export.S, 'Object', {
   getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object){
@@ -27647,7 +27693,7 @@ $export($export.S, 'Object', {
 var $export     = __webpack_require__(0)
   , global      = __webpack_require__(2)
   , core        = __webpack_require__(24)
-  , microtask   = __webpack_require__(73)()
+  , microtask   = __webpack_require__(74)()
   , OBSERVABLE  = __webpack_require__(5)('observable')
   , aFunction   = __webpack_require__(11)
   , anObject    = __webpack_require__(1)
@@ -28020,7 +28066,7 @@ $export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(97)('Set')});
 
 // https://github.com/mathiasbynens/String.prototype.at
 var $export = __webpack_require__(0)
-  , $at     = __webpack_require__(77)(true);
+  , $at     = __webpack_require__(78)(true);
 
 $export($export.P, 'String', {
   at: function at(pos){
@@ -28047,7 +28093,7 @@ var $RegExpStringIterator = function(regexp, string){
   this._s = string;
 };
 
-__webpack_require__(69)($RegExpStringIterator, 'RegExp String', function next(){
+__webpack_require__(70)($RegExpStringIterator, 'RegExp String', function next(){
   var match = this._r.exec(this._s);
   return {value: match, done: match === null};
 });
@@ -28126,13 +28172,13 @@ __webpack_require__(44)('trimRight', function($trim){
 /* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(83)('asyncIterator');
+__webpack_require__(84)('asyncIterator');
 
 /***/ }),
 /* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(83)('observable');
+__webpack_require__(84)('observable');
 
 /***/ }),
 /* 313 */
@@ -28147,7 +28193,7 @@ $export($export.S, 'System', {global: __webpack_require__(2)});
 /* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $iterators    = __webpack_require__(85)
+var $iterators    = __webpack_require__(86)
   , redefine      = __webpack_require__(13)
   , global        = __webpack_require__(2)
   , hide          = __webpack_require__(12)
@@ -28175,7 +28221,7 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0)
-  , $task   = __webpack_require__(81);
+  , $task   = __webpack_require__(82);
 $export($export.G + $export.B, {
   setImmediate:   $task.set,
   clearImmediate: $task.clear
@@ -28309,7 +28355,7 @@ __webpack_require__(149);
 __webpack_require__(152);
 __webpack_require__(151);
 __webpack_require__(166);
-__webpack_require__(85);
+__webpack_require__(86);
 __webpack_require__(238);
 __webpack_require__(243);
 __webpack_require__(116);
@@ -29128,14 +29174,896 @@ module.exports = __webpack_require__(24);
   typeof self === "object" ? self : this
 );
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(88)))
 
 /***/ }),
 /* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(120);
-module.exports = __webpack_require__(88);
+module.exports = __webpack_require__(89);
+
+
+/***/ }),
+/* 320 */,
+/* 321 */,
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Knockout Mapping plugin v2.6.0
+ * (c) 2013 Steven Sanderson, Roy Jacobs - http://knockoutjs.com/
+ * License: MIT (http://www.opensource.org/licenses/mit-license.php)
+ */
+(function(factory) {
+    'use strict';
+
+    /*jshint sub:true,curly:false*/
+    /*global ko,require,exports,define,module*/
+
+    if (true) {
+        // CommonJS or Node: hard-coded dependency on "knockout"
+        factory(__webpack_require__(59), exports);
+    }
+    else if (typeof define === "function" && define["amd"]) {
+        // AMD anonymous module with hard-coded dependency on "knockout"
+        define(["knockout", "exports"], factory);
+    }
+    else {
+        // <script> tag: use the global `ko` object, attaching a `mapping` property
+        if (typeof ko === 'undefined') {
+            throw new Error('Knockout is required, please ensure it is loaded before loading this mapping plug-in');
+        }
+        factory(ko, ko.mapping = {});
+    }
+}(function(ko, exports) {
+    /*jshint sub:true,curly:false*/
+    'use strict';
+
+    ko.mapping = exports;
+
+    var DEBUG=true;
+    var mappingProperty = "__ko_mapping__";
+    var realKoDependentObservable = ko.dependentObservable;
+    var mappingNesting = 0;
+    var dependentObservables;
+    var visitedObjects;
+    var recognizedRootProperties = ["create", "update", "key", "arrayChanged"];
+    var emptyReturn = {};
+
+    var _defaultOptions = {
+        include: ["_destroy"],
+        ignore: [],
+        copy: [],
+        observe: []
+    };
+    var defaultOptions = _defaultOptions;
+
+    function unionArrays() {
+        var args = arguments,
+            l = args.length,
+            obj = {},
+            res = [],
+            i, j, k;
+
+        while (l--) {
+            k = args[l];
+            i = k.length;
+
+            while (i--) {
+                j = k[i];
+                if (!obj[j]) {
+                    obj[j] = 1;
+                    res.push(j);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    function extendObject(destination, source) {
+        var destType;
+
+        for (var key in source) {
+            if (source.hasOwnProperty(key) && source[key]) {
+                destType = exports.getType(destination[key]);
+                if (key && destination[key] && destType !== "array" && destType !== "string") {
+                    extendObject(destination[key], source[key]);
+                }
+                else {
+                    var bothArrays = exports.getType(destination[key]) === "array" && exports.getType(source[key]) === "array";
+                    if (bothArrays) {
+                        destination[key] = unionArrays(destination[key], source[key]);
+                    }
+                    else {
+                        destination[key] = source[key];
+                    }
+                }
+            }
+        }
+    }
+
+    function merge(obj1, obj2) {
+        var merged = {};
+        extendObject(merged, obj1);
+        extendObject(merged, obj2);
+
+        return merged;
+    }
+
+    exports.isMapped = function(viewModel) {
+        var unwrapped = ko.utils.unwrapObservable(viewModel);
+        return unwrapped && unwrapped[mappingProperty];
+    };
+
+    exports.fromJS = function(jsObject /*, inputOptions, target*/) {
+        if (arguments.length === 0) {
+            throw new Error("When calling ko.fromJS, pass the object you want to convert.");
+        }
+        try {
+            if (!mappingNesting) {
+                dependentObservables = [];
+                visitedObjects = new ObjectLookup();
+            }
+            mappingNesting++;
+
+            var options;
+            var target;
+
+            if (arguments.length === 2) {
+                if (arguments[1][mappingProperty]) {
+                    target = arguments[1];
+                }
+                else {
+                    options = arguments[1];
+                }
+            }
+            if (arguments.length === 3) {
+                options = arguments[1];
+                target = arguments[2];
+            }
+
+            if (target) {
+                options = merge(options, target[mappingProperty]);
+            }
+            options = fillOptions(options);
+
+            var result = updateViewModel(target, jsObject, options);
+            if (target) {
+                result = target;
+            }
+
+            // Evaluate any dependent observables that were proxied.
+            // Do this after the model's observables have been created
+            if (!--mappingNesting) {
+                while (dependentObservables.length) {
+                    var DO = dependentObservables.pop();
+                    if (DO) {
+                        DO();
+                        // Move this magic property to the underlying dependent observable
+                        DO.__DO["throttleEvaluation"] = DO["throttleEvaluation"];
+                    }
+                }
+            }
+
+            // Save any new mapping options in the view model, so that updateFromJS can use them later.
+            result[mappingProperty] = merge(result[mappingProperty], options);
+
+            return result;
+        }
+        catch (e) {
+            mappingNesting = 0;
+            throw e;
+        }
+    };
+
+    exports.fromJSON = function(jsonString /*, options, target*/) {
+        var args = Array.prototype.slice.call(arguments, 0);
+        args[0] = ko.utils.parseJson(jsonString);
+        return exports.fromJS.apply(this, args);
+    };
+
+    exports.toJS = function(rootObject, options) {
+        if (!defaultOptions) exports.resetDefaultOptions();
+
+        if (arguments.length === 0) throw new Error("When calling ko.mapping.toJS, pass the object you want to convert.");
+        if (exports.getType(defaultOptions.ignore) !== "array") throw new Error("ko.mapping.defaultOptions().ignore should be an array.");
+        if (exports.getType(defaultOptions.include) !== "array") throw new Error("ko.mapping.defaultOptions().include should be an array.");
+        if (exports.getType(defaultOptions.copy) !== "array") throw new Error("ko.mapping.defaultOptions().copy should be an array.");
+
+        // Merge in the options used in fromJS
+        options = fillOptions(options, rootObject[mappingProperty]);
+
+        // We just unwrap everything at every level in the object graph
+        return exports.visitModel(rootObject, function(x) {
+            return ko.utils.unwrapObservable(x);
+        }, options);
+    };
+
+    exports.toJSON = function(rootObject, options, replacer, space) {
+        var plainJavaScriptObject = exports.toJS(rootObject, options);
+        return ko.utils.stringifyJson(plainJavaScriptObject, replacer, space);
+    };
+
+    exports.defaultOptions = function() {
+        if (arguments.length > 0) {
+            defaultOptions = arguments[0];
+        }
+        else {
+            return defaultOptions;
+        }
+    };
+
+    exports.resetDefaultOptions = function() {
+        defaultOptions = {
+            include: _defaultOptions.include.slice(0),
+            ignore: _defaultOptions.ignore.slice(0),
+            copy: _defaultOptions.copy.slice(0),
+            observe: _defaultOptions.observe.slice(0)
+        };
+    };
+
+    exports.getType = function(x) {
+        if ((x) && (typeof (x) === "object")) {
+            if (x.constructor === Date) return "date";
+            if (x.constructor === Array) return "array";
+        }
+        return typeof x;
+    };
+
+    function fillOptions(rawOptions, otherOptions) {
+        var options = merge({}, rawOptions);
+
+        // Move recognized root-level properties into a root namespace
+        for (var i = recognizedRootProperties.length - 1; i >= 0; i--) {
+            var property = recognizedRootProperties[i];
+
+            // Carry on, unless this property is present
+            if (!options[property]) continue;
+
+            // Move the property into the root namespace
+            if (!(options[""] instanceof Object)) options[""] = {};
+            options[""][property] = options[property];
+            delete options[property];
+        }
+
+        if (otherOptions) {
+            options.ignore = mergeArrays(otherOptions.ignore, options.ignore);
+            options.include = mergeArrays(otherOptions.include, options.include);
+            options.copy = mergeArrays(otherOptions.copy, options.copy);
+            options.observe = mergeArrays(otherOptions.observe, options.observe);
+        }
+        options.ignore = mergeArrays(options.ignore, defaultOptions.ignore);
+        options.include = mergeArrays(options.include, defaultOptions.include);
+        options.copy = mergeArrays(options.copy, defaultOptions.copy);
+        options.observe = mergeArrays(options.observe, defaultOptions.observe);
+
+        options.mappedProperties = options.mappedProperties || {};
+        options.copiedProperties = options.copiedProperties || {};
+        return options;
+    }
+
+    function mergeArrays(a, b) {
+        if (a === undefined) {
+            a = [];
+        }
+        else if (exports.getType(a) !== "array") {
+            a = [a];
+        }
+
+        if (b === undefined) {
+            b = [];
+        }
+        else if (exports.getType(b) !== "array") {
+            b = [b];
+        }
+
+        return ko.utils.arrayGetDistinctValues(a.concat(b));
+    }
+
+    // When using a 'create' callback, we proxy the dependent observable so that it doesn't immediately evaluate on creation.
+    // The reason is that the dependent observables in the user-specified callback may contain references to properties that have not been mapped yet.
+    function withProxyDependentObservable(dependentObservables, callback) {
+        var localDO = ko.dependentObservable;
+        ko.dependentObservable = function(read, owner, options) {
+            options = options || {};
+
+            if (read && typeof read === "object") { // mirrors condition in knockout implementation of DO's
+                options = read;
+            }
+
+            var realDeferEvaluation = options.deferEvaluation;
+            var realIsPure = options.pure;
+
+            var isRemoved = false;
+
+            // We wrap the original dependent observable so that we can remove it from the 'dependentObservables' list we need to evaluate after mapping has
+            // completed if the user already evaluated the DO themselves in the meantime.
+            var wrap = function(DO) {
+                // Temporarily revert ko.dependentObservable, since it is used in ko.isWriteableObservable
+                var tmp = ko.dependentObservable;
+                ko.dependentObservable = realKoDependentObservable;
+                var isWriteable = ko.isWriteableObservable(DO);
+                ko.dependentObservable = tmp;
+
+                var wrapped = realKoDependentObservable({
+                    read: function() {
+                        if (!isRemoved) {
+                            ko.utils.arrayRemoveItem(dependentObservables, DO);
+                            isRemoved = true;
+                        }
+                        return DO.apply(DO, arguments);
+                    },
+                    write: isWriteable && function(val) {
+                        return DO(val);
+                    },
+                    deferEvaluation: true
+                });
+                if (DEBUG) wrapped._wrapper = true;
+                wrapped.__DO = DO;
+                return wrapped;
+            };
+
+            options.deferEvaluation = true; // will either set for just options, or both read/options.
+            var realDependentObservable = realKoDependentObservable(read, owner, options);
+
+            if (!realDeferEvaluation && !realIsPure) {
+                realDependentObservable = wrap(realDependentObservable);
+                dependentObservables.push(realDependentObservable);
+            }
+
+            return realDependentObservable;
+        };
+        ko.dependentObservable.fn = realKoDependentObservable.fn;
+        ko.computed = ko.dependentObservable;
+        var result = callback();
+        ko.dependentObservable = localDO;
+        ko.computed = ko.dependentObservable;
+        return result;
+    }
+
+    function updateViewModel(mappedRootObject, rootObject, options, parentName, parent, parentPropertyName, mappedParent) {
+        var isArray = exports.getType(ko.utils.unwrapObservable(rootObject)) === "array";
+
+        parentPropertyName = parentPropertyName || "";
+
+        // If this object was already mapped previously, take the options from there and merge them with our existing ones.
+        if (exports.isMapped(mappedRootObject)) {
+            var previousMapping = ko.utils.unwrapObservable(mappedRootObject)[mappingProperty];
+            options = merge(previousMapping, options);
+        }
+
+        var callbackParams = {
+            data: rootObject,
+            parent: mappedParent || parent
+        };
+
+        var hasCreateCallback = function() {
+            return options[parentName] && options[parentName].create instanceof Function;
+        };
+
+        var createCallback = function(data) {
+            return withProxyDependentObservable(dependentObservables, function() {
+
+                if (ko.utils.unwrapObservable(parent) instanceof Array) {
+                    return options[parentName].create({
+                        data: data || callbackParams.data,
+                        parent: callbackParams.parent,
+                        skip: emptyReturn
+                    });
+                }
+                else {
+                    return options[parentName].create({
+                        data: data || callbackParams.data,
+                        parent: callbackParams.parent
+                    });
+                }
+            });
+        };
+
+        var hasUpdateCallback = function() {
+            return options[parentName] && options[parentName].update instanceof Function;
+        };
+
+        var updateCallback = function(obj, data) {
+            var params = {
+                data: data || callbackParams.data,
+                parent: callbackParams.parent,
+                target: ko.utils.unwrapObservable(obj)
+            };
+
+            if (ko.isWriteableObservable(obj)) {
+                params.observable = obj;
+            }
+
+            return options[parentName].update(params);
+        };
+
+        var alreadyMapped = visitedObjects.get(rootObject);
+        if (alreadyMapped) {
+            return alreadyMapped;
+        }
+
+        parentName = parentName || "";
+
+        if (!isArray) {
+            // For atomic types, do a direct update on the observable
+            if (!canHaveProperties(rootObject)) {
+                switch (exports.getType(rootObject)) {
+                    case "function":
+                        if (hasUpdateCallback()) {
+                            if (ko.isWriteableObservable(rootObject)) {
+                                rootObject(updateCallback(rootObject));
+                                mappedRootObject = rootObject;
+                            }
+                            else {
+                                mappedRootObject = updateCallback(rootObject);
+                            }
+                        }
+                        else {
+                            mappedRootObject = rootObject;
+                        }
+                        break;
+                    default:
+                        if (ko.isWriteableObservable(mappedRootObject)) {
+                            var valueToWrite;
+                            if (hasUpdateCallback()) {
+                                valueToWrite = updateCallback(mappedRootObject);
+                                mappedRootObject(valueToWrite);
+                                return valueToWrite;
+                            }
+                            else {
+                                valueToWrite = ko.utils.unwrapObservable(rootObject);
+                                mappedRootObject(valueToWrite);
+                                return valueToWrite;
+                            }
+                        }
+                        else {
+                            var hasCreateOrUpdateCallback = hasCreateCallback() || hasUpdateCallback();
+
+                            if (hasCreateCallback()) {
+                                mappedRootObject = createCallback();
+                            }
+                            else {
+                                mappedRootObject = ko.observable(ko.utils.unwrapObservable(rootObject));
+                            }
+
+                            if (hasUpdateCallback()) {
+                                mappedRootObject(updateCallback(mappedRootObject));
+                            }
+
+                            if (hasCreateOrUpdateCallback) return mappedRootObject;
+                        }
+                }
+
+            }
+            else {
+                mappedRootObject = ko.utils.unwrapObservable(mappedRootObject);
+                if (!mappedRootObject) {
+                    if (hasCreateCallback()) {
+                        var result = createCallback();
+
+                        if (hasUpdateCallback()) {
+                            result = updateCallback(result);
+                        }
+                        return result;
+                    }
+                    else {
+                        if (hasUpdateCallback()) {
+                            //Removed ambiguous parameter result
+                            return updateCallback();
+                        }
+                        mappedRootObject = {};
+                    }
+                }
+
+                if (hasUpdateCallback()) {
+                    mappedRootObject = updateCallback(mappedRootObject);
+                }
+
+                visitedObjects.save(rootObject, mappedRootObject);
+                if (hasUpdateCallback()) return mappedRootObject;
+
+                // For non-atomic types, visit all properties and update recursively
+                visitPropertiesOrArrayEntries(rootObject, function(indexer) {
+                    var fullPropertyName = parentPropertyName.length ? parentPropertyName + "." + escapePropertyNameComponent(indexer) : escapePropertyNameComponent(indexer);
+
+                    if (ko.utils.arrayIndexOf(options.ignore, fullPropertyName) !== -1) {
+                        return;
+                    }
+
+                    if (ko.utils.arrayIndexOf(options.copy, fullPropertyName) !== -1) {
+                        mappedRootObject[indexer] = rootObject[indexer];
+                        return;
+                    }
+
+                    if (typeof rootObject[indexer] !== "object" && exports.getType(rootObject[indexer]) !== "array" && options.observe.length > 0 && ko.utils.arrayIndexOf(options.observe, fullPropertyName) === -1) {
+                        mappedRootObject[indexer] = rootObject[indexer];
+                        options.copiedProperties[fullPropertyName] = true;
+                        return;
+                    }
+
+                    // In case we are adding an already mapped property, fill it with the previously mapped property value to prevent recursion.
+                    // If this is a property that was generated by fromJS, we should use the options specified there
+                    var prevMappedProperty = visitedObjects.get(rootObject[indexer]);
+                    var retval = updateViewModel(mappedRootObject[indexer], rootObject[indexer], options, indexer, mappedRootObject, fullPropertyName, mappedRootObject);
+                    var value = prevMappedProperty || retval;
+
+                    if (options.observe.length > 0 && ko.utils.arrayIndexOf(options.observe, fullPropertyName) === -1) {
+                        mappedRootObject[indexer] = ko.utils.unwrapObservable(value);
+                        options.copiedProperties[fullPropertyName] = true;
+                        return;
+                    }
+
+                    if (ko.isWriteableObservable(mappedRootObject[indexer])) {
+                        value = ko.utils.unwrapObservable(value);
+                        if (mappedRootObject[indexer]() !== value) {
+                            mappedRootObject[indexer](value);
+                        }
+                    }
+                    else {
+                        value = mappedRootObject[indexer] === undefined ? value : ko.utils.unwrapObservable(value);
+                        mappedRootObject[indexer] = value;
+                    }
+
+                    options.mappedProperties[fullPropertyName] = true;
+                });
+            }
+        }
+        else { //mappedRootObject is an array
+            var changes = [];
+
+            var hasKeyCallback = false;
+            var keyCallback = function(x) {
+                return x;
+            };
+            if (options[parentName] && options[parentName].key) {
+                keyCallback = options[parentName].key;
+                hasKeyCallback = true;
+            }
+
+            if (!ko.isObservable(mappedRootObject)) {
+                // When creating the new observable array, also add a bunch of utility functions that take the 'key' of the array items into account.
+                mappedRootObject = ko.observableArray([]);
+
+                mappedRootObject.mappedRemove = function(valueOrPredicate) {
+                    var predicate = typeof valueOrPredicate === "function" ? valueOrPredicate : function(value) {
+                        return value === keyCallback(valueOrPredicate);
+                    };
+                    return mappedRootObject.remove(function(item) {
+                        return predicate(keyCallback(item));
+                    });
+                };
+
+                mappedRootObject.mappedRemoveAll = function(arrayOfValues) {
+                    var arrayOfKeys = filterArrayByKey(arrayOfValues, keyCallback);
+                    return mappedRootObject.remove(function(item) {
+                        return ko.utils.arrayIndexOf(arrayOfKeys, keyCallback(item)) !== -1;
+                    });
+                };
+
+                mappedRootObject.mappedDestroy = function(valueOrPredicate) {
+                    var predicate = typeof valueOrPredicate === "function" ? valueOrPredicate : function(value) {
+                        return value === keyCallback(valueOrPredicate);
+                    };
+                    return mappedRootObject.destroy(function(item) {
+                        return predicate(keyCallback(item));
+                    });
+                };
+
+                mappedRootObject.mappedDestroyAll = function(arrayOfValues) {
+                    var arrayOfKeys = filterArrayByKey(arrayOfValues, keyCallback);
+                    return mappedRootObject.destroy(function(item) {
+                        return ko.utils.arrayIndexOf(arrayOfKeys, keyCallback(item)) !== -1;
+                    });
+                };
+
+                mappedRootObject.mappedIndexOf = function(item) {
+                    var keys = filterArrayByKey(mappedRootObject(), keyCallback);
+                    var key = keyCallback(item);
+                    return ko.utils.arrayIndexOf(keys, key);
+                };
+
+                mappedRootObject.mappedGet = function(item) {
+                    return mappedRootObject()[mappedRootObject.mappedIndexOf(item)];
+                };
+
+                mappedRootObject.mappedCreate = function(value) {
+                    if (mappedRootObject.mappedIndexOf(value) !== -1) {
+                        throw new Error("There already is an object with the key that you specified.");
+                    }
+                    var item = hasCreateCallback() ? createCallback(value) : value;
+                    if (hasUpdateCallback()) {
+                        var newValue = updateCallback(item, value);
+                        if (ko.isWriteableObservable(item)) {
+                            item(newValue);
+                        }
+                        else {
+                            item = newValue;
+                        }
+                    }
+                    mappedRootObject.push(item);
+                    return item;
+                };
+            }
+
+            var currentArrayKeys = filterArrayByKey(ko.utils.unwrapObservable(mappedRootObject), keyCallback).sort();
+            var newArrayKeys = filterArrayByKey(rootObject, keyCallback);
+            if (hasKeyCallback) newArrayKeys.sort();
+            var editScript = ko.utils.compareArrays(currentArrayKeys, newArrayKeys);
+
+            var ignoreIndexOf = {};
+
+            var i, j, key;
+
+            var unwrappedRootObject = ko.utils.unwrapObservable(rootObject);
+            var itemsByKey = {};
+            var optimizedKeys = true;
+            for (i = 0, j = unwrappedRootObject.length; i < j; i++) {
+                key = keyCallback(unwrappedRootObject[i]);
+                if (key === undefined || key instanceof Object) {
+                    optimizedKeys = false;
+                    break;
+                }
+                itemsByKey[key] = unwrappedRootObject[i];
+            }
+
+            var newContents = [];
+            var passedOver = 0;
+            var item, index;
+
+            for (i = 0, j = editScript.length; i < j; i++) {
+                key = editScript[i];
+                var mappedItem;
+                var fullPropertyName = parentPropertyName + "[" + escapePropertyNameComponent(i) + "]";
+
+                switch (key.status) {
+                    case "added":
+                        item = optimizedKeys ? itemsByKey[key.value] : getItemByKey(ko.utils.unwrapObservable(rootObject), key.value, keyCallback);
+                        mappedItem = updateViewModel(undefined, item, options, parentName, mappedRootObject, fullPropertyName, parent);
+                        if (!hasCreateCallback()) {
+                            mappedItem = ko.utils.unwrapObservable(mappedItem);
+                        }
+
+                        index = ignorableIndexOf(ko.utils.unwrapObservable(rootObject), item, ignoreIndexOf);
+
+                        if (mappedItem === emptyReturn) {
+                            passedOver++;
+                        }
+                        else {
+                            newContents[index - passedOver] = mappedItem;
+                        }
+
+                        ignoreIndexOf[index] = true;
+                        break;
+                    case "retained":
+                        item = optimizedKeys ? itemsByKey[key.value] : getItemByKey(ko.utils.unwrapObservable(rootObject), key.value, keyCallback);
+                        mappedItem = getItemByKey(mappedRootObject, key.value, keyCallback);
+                        updateViewModel(mappedItem, item, options, parentName, mappedRootObject, fullPropertyName, parent);
+
+                        index = ignorableIndexOf(ko.utils.unwrapObservable(rootObject), item, ignoreIndexOf);
+                        newContents[index] = mappedItem;
+                        ignoreIndexOf[index] = true;
+                        break;
+                    case "deleted":
+                        mappedItem = getItemByKey(mappedRootObject, key.value, keyCallback);
+                        break;
+                }
+
+                changes.push({
+                    event: key.status,
+                    item: mappedItem
+                });
+            }
+
+            mappedRootObject(newContents);
+
+            if (options[parentName] && options[parentName].arrayChanged) {
+                ko.utils.arrayForEach(changes, function(change) {
+                    options[parentName].arrayChanged(change.event, change.item);
+                });
+            }
+        }
+
+        return mappedRootObject;
+    }
+
+    function ignorableIndexOf(array, item, ignoreIndices) {
+        for (var i = 0, j = array.length; i < j; i++) {
+            if (ignoreIndices[i] === true) continue;
+            if (array[i] === item) return i;
+        }
+        return null;
+    }
+
+    function mapKey(item, callback) {
+        var mappedItem;
+        if (callback) mappedItem = callback(item);
+        if (exports.getType(mappedItem) === "undefined") mappedItem = item;
+
+        return ko.utils.unwrapObservable(mappedItem);
+    }
+
+    function getItemByKey(array, key, callback) {
+        array = ko.utils.unwrapObservable(array);
+        for (var i = 0, j = array.length; i < j; i++) {
+            var item = array[i];
+            if (mapKey(item, callback) === key) return item;
+        }
+
+        throw new Error("When calling ko.update*, the key '" + key + "' was not found!");
+    }
+
+    function filterArrayByKey(array, callback) {
+        return ko.utils.arrayMap(ko.utils.unwrapObservable(array), function(item) {
+            if (callback) {
+                return mapKey(item, callback);
+            }
+            else {
+                return item;
+            }
+        });
+    }
+
+    function visitPropertiesOrArrayEntries(rootObject, visitorCallback) {
+        if (exports.getType(rootObject) === "array") {
+            for (var i = 0; i < rootObject.length; i++)
+                visitorCallback(i);
+        }
+        else {
+            for (var propertyName in rootObject) {
+                if (rootObject.hasOwnProperty(propertyName)) {
+                    visitorCallback(propertyName);
+                }
+            }
+        }
+    }
+
+    function canHaveProperties(object) {
+        if (object === null) {
+            return false;
+        }
+        var type = exports.getType(object);
+        return (type === "object") || (type === "array");
+    }
+
+    // Based on the parentName, this creates a fully classified name of a property
+
+    function getPropertyName(parentName, parent, indexer) {
+        var propertyName = parentName || "";
+        if (exports.getType(parent) === "array") {
+            if (parentName) {
+                propertyName += "[" + escapePropertyNameComponent(indexer) + "]";
+            }
+        }
+        else {
+            if (parentName) {
+                propertyName += ".";
+            }
+            propertyName += escapePropertyNameComponent(indexer);
+        }
+        return propertyName;
+    }
+
+    function escapePropertyNameComponent(indexer) {
+        var escapedIndexer  = (''+indexer)
+            .replace(/~/g, '~~')
+            .replace(/\[/g, '~[')
+            .replace(/]/g, '~]')
+            .replace(/\./g, '~.');
+        return escapedIndexer;
+    }
+
+
+    exports.visitModel = function(rootObject, callback, options) {
+        options = options || {};
+        options.visitedObjects = options.visitedObjects || new ObjectLookup();
+
+        var mappedRootObject;
+        var unwrappedRootObject = ko.utils.unwrapObservable(rootObject);
+
+        if (!canHaveProperties(unwrappedRootObject)) {
+            return callback(rootObject, options.parentName);
+        }
+        else {
+            options = fillOptions(options, unwrappedRootObject[mappingProperty]);
+
+            // Only do a callback, but ignore the results
+            callback(rootObject, options.parentName);
+            mappedRootObject = exports.getType(unwrappedRootObject) === "array" ? [] : {};
+        }
+
+        options.visitedObjects.save(rootObject, mappedRootObject);
+
+        var parentName = options.parentName;
+        visitPropertiesOrArrayEntries(unwrappedRootObject, function(indexer) {
+            var escapedIndexer = escapePropertyNameComponent(indexer);
+            if (options.ignore && ko.utils.arrayIndexOf(options.ignore, escapedIndexer) !== -1) return;
+
+            var propertyValue = unwrappedRootObject[indexer];
+            options.parentName = getPropertyName(parentName, unwrappedRootObject, indexer);
+
+            // If we don't want to explicitly copy the unmapped property...
+            if (ko.utils.arrayIndexOf(options.copy, escapedIndexer) === -1) {
+                // ...find out if it's a property we want to explicitly include
+                if (ko.utils.arrayIndexOf(options.include, escapedIndexer) === -1) {
+                    // The mapped properties object contains all the properties that were part of the original object.
+                    // If a property does not exist, and it is not because it is part of an array (e.g. "myProp[3]"), then it should not be unmapped.
+                    var unwrappedRootMappingProperty = unwrappedRootObject[mappingProperty];
+                    if (unwrappedRootMappingProperty) {
+                        var mappedProperties = unwrappedRootMappingProperty.mappedProperties;
+                        if (mappedProperties && !mappedProperties[escapedIndexer]) {
+                            var copiedProperties = unwrappedRootMappingProperty.copiedProperties;
+                            if (copiedProperties && !copiedProperties[escapedIndexer] && (exports.getType(unwrappedRootObject) !== "array")) {
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
+            switch (exports.getType(ko.utils.unwrapObservable(propertyValue))) {
+                case "object":
+                case "array":
+                case "undefined":
+                    var previouslyMappedValue = options.visitedObjects.get(propertyValue);
+                    mappedRootObject[indexer] = (exports.getType(previouslyMappedValue) !== "undefined") ? previouslyMappedValue : exports.visitModel(propertyValue, callback, options);
+                    break;
+                default:
+                    mappedRootObject[indexer] = callback(propertyValue, options.parentName);
+            }
+        });
+
+        return mappedRootObject;
+    };
+
+    function SimpleObjectLookup() {
+        var keys = [];
+        var values = [];
+        this.save = function(key, value) {
+            var existingIndex = ko.utils.arrayIndexOf(keys, key);
+            if (existingIndex >= 0) values[existingIndex] = value;
+            else {
+                keys.push(key);
+                values.push(value);
+            }
+        };
+        this.get = function(key) {
+            var existingIndex = ko.utils.arrayIndexOf(keys, key);
+            var value = (existingIndex >= 0) ? values[existingIndex] : undefined;
+            return value;
+        };
+    }
+
+    function ObjectLookup() {
+        var buckets = {};
+
+        var findBucket = function(key) {
+            var bucketKey;
+            try {
+                bucketKey = key;//JSON.stringify(key);
+            }
+            catch (e) {
+                bucketKey = "$$$";
+            }
+
+            var bucket = buckets[bucketKey];
+            if (!buckets.hasOwnProperty(bucketKey)) {
+                bucket = new SimpleObjectLookup();
+                buckets[bucketKey] = bucket;
+            }
+            return bucket;
+        };
+
+        this.save = function(key, value) {
+            findBucket(key).save(key, value);
+        };
+        this.get = function(key) {
+            return findBucket(key).get(key);
+        };
+    }
+}));
 
 
 /***/ })

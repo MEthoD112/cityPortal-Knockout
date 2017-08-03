@@ -68,8 +68,8 @@ export class FilterModal {
             this.isCriminalAttr.css('background', constants.noActiveColor);
             this.isPollutedAttr.css('background', constants.noActiveColor);
             const arrOfMinAndMax = this.findMinAndMaxValuesOfCitizens(JSON.parse(localStorage.getItem('cities')));
-            this.inputMaxCitizens.val(arrOfMinAndMax[1]);
-            this.inputMinCitizens.val(arrOfMinAndMax[0]);
+            this.inputMaxCitizens.val(arrOfMinAndMax[1] || constants.noAreas);
+            this.inputMinCitizens.val(arrOfMinAndMax[0] || constants.noAreas);
             this.initCountriesList(JSON.parse(localStorage.getItem('cities')));
         });
     };
