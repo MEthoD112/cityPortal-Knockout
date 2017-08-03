@@ -88,6 +88,7 @@ export class FilterModal {
     // Find max and min value of citizens
     findMinAndMaxValuesOfCitizens(collection) {
         const arr = [];
+        collection = collection || [];
         collection.forEach((item) => {
             item.cityAreas.forEach((item) => {
                 if (item.citizenAmount) {
